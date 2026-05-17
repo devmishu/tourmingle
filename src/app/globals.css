@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+
+@layer components {
+    .app-container {
+        @apply container mx-auto px-5 my-10;
+    }
+}
