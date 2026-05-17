@@ -20,13 +20,16 @@ export default function DestinationDetails({ id, imageUrl, country, destinationN
                     </button>
                 </Link>
                 <div className="flex space-x-3">
-                    <button className="flex items-center px-4 py-2 border border-gray-200 rounded-sm text-sm hover:bg-gray-50">
-                        <Edit3 size={16} className="mr-2" />
-                        Edit
-                    </button>
+
+                    <Link href={`/destinations/${id}/edit`}>
+                        <button className="flex items-center px-4 py-2 border border-gray-200 rounded-sm text-sm hover:bg-gray-50">
+                            <Edit3 size={16} className="mr-2" />
+                            Edit
+                        </button>
+                    </Link>
 
                     <DeleteButton id={id} />
-                    
+
                 </div>
             </div>
 

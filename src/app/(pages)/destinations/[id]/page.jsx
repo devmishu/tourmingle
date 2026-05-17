@@ -4,9 +4,9 @@ import DestinationDetails from "./_components/DestinationDetails";
 const DestinationDetailPage = async ({ params }) => {
     const { id } = await params;
     const destination = await tourService.getSingleDestination(id);
-    console.log("single", destination);
+   
     const { _id, imageUrl, country, destinationName, duration, price } = destination;
-    console.log(imageUrl);
+    
 
     return (
         <div className='app-container'>

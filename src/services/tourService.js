@@ -15,6 +15,21 @@ export const tourService = {
         }
         return data;
     },
+    editDestination: async (id,updatedData) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+            throw new Error(data.message || 'Something went wrong');
+        }
+        return data;
+    },
 
     deleteDestination: async (id) => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {

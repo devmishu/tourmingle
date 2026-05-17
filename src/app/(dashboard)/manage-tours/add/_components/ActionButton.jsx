@@ -1,7 +1,7 @@
 import { Save, Trash2 } from 'lucide-react';
-import React from 'react';
 
-const ActionButton = () => {
+
+const ActionButton = ({children}) => {
     return (
         <div className="flex justify-end space-x-4 pt-4">
             <button
@@ -16,7 +16,7 @@ const ActionButton = () => {
                 className="flex items-center space-x-2 px-6 py-2.5 bg-[#109db9] text-white hover:bg-[#0e8ca5] transition-colors rounded-sm text-sm"
             >
                 <Save size={16} />
-                <span>Add Travel Package</span>
+                <span>{children}</span>
             </button>
         </div>
     );

@@ -17,6 +17,6 @@ export default function AddTravelPackage() {
             <div className="max-w-4xl mx-auto bg-white p-8 md:p-12 border border-gray-100 shadow-2xl rounded-sm">
                 <TravelForm  />
             </div>
-        </div>
-    );
+        </div> 
+    ); 
 }

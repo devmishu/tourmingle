@@ -13,7 +13,7 @@ const DeleteButton = ({ id }) => {
 
             const data = await tourService.deleteDestination(id);
 
-            console.log(data);
+            // console.log(data);
             alert(`${data.message}`);
 
             revalidateAnyPath("destinations");

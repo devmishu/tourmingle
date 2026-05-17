@@ -1,24 +1,25 @@
-'use client'
-import { ChevronDown } from 'lucide-react';
-import React from 'react';
-import ActionButton from './ActionButton';
-import { tourService } from '@/services/tourService';
-import { useRouter } from 'next/navigation';
+"use client"
+import ActionButton from '@/app/(dashboard)/manage-tours/add/_components/ActionButton';
 import { revalidateAnyPath } from '@/app/actions/revalidate';
+import { tourService } from '@/services/tourService';
+import { ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
-const TravelForm = () => {
+const EditForm = ({ catagory, country, departureDate, description, destinationName, imageUrl, price, duration, id }) => {
     const router = useRouter()
 
     const handleAddTravelPackage = async (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(e.target);
-        const travelData = Object.fromEntries(formData.entries());
+        const updatedData = Object.fromEntries(formData.entries());
+        console.log(updatedData);
 
 
         try {
 
-            const data = await tourService.createDestination(travelData);
+            const data = await tourService.editDestination(id, updatedData);
 
             console.log(data);
             alert(`${data.message}`);
@@ -32,8 +33,8 @@ const TravelForm = () => {
             alert(error.message);
         }
     }
-    return (
 
+    return (
         <form
             onSubmit={handleAddTravelPackage}
             className="space-y-6">
@@ -45,6 +46,7 @@ const TravelForm = () => {
                     type="text"
                     placeholder="Bali Paradise"
                     name='destinationName'
+                    defaultValue={destinationName}
                     className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                 />
             </div>
@@ -57,14 +59,17 @@ const TravelForm = () => {
                         type="text"
                         placeholder="Indonesia"
                         name='country'
+                        defaultValue={country}
                         className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                     />
                 </div>
                 <div className="space-y-2">
                     <label className="block text-sm font-bold">Category</label>
                     <div className="relative">
+
                         <select className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm appearance-none focus:outline-none focus:ring-1 focus:ring-teal-500 text-gray-500"
                             name='catagory'
+                            defaultValue={catagory}
                         >
                             <option>Beach</option>
                             <option>Mountain</option>
@@ -83,6 +88,7 @@ const TravelForm = () => {
                         type="text"
                         placeholder="e.g., 1299"
                         name='price'
+                        defaultValue={price}
                         className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                     />
                 </div>
@@ -92,6 +98,7 @@ const TravelForm = () => {
                         type="text"
                         placeholder="e.g., 7 Days/6 Nights"
                         name='duration'
+                        defaultValue={duration}
                         className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                     />
                 </div>
@@ -104,6 +111,7 @@ const TravelForm = () => {
                     type="text"
                     placeholder="mm/dd/yyyy"
                     name='departureDate'
+                    defaultValue={departureDate}
                     className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                 />
             </div>
@@ -115,6 +123,7 @@ const TravelForm = () => {
                     type="text"
                     placeholder="https://example.com/image.jpg"
                     name='imageUrl'
+                    defaultValue={imageUrl}
                     className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400"
                 />
             </div>
@@ -126,6 +135,7 @@ const TravelForm = () => {
                     rows={5}
                     placeholder="Describe the travel experience..."
                     name='description'
+                    defaultValue={description}
                     className="w-full p-3 bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-teal-500 placeholder-gray-400 resize-none"
                 />
             </div>
@@ -133,9 +143,9 @@ const TravelForm = () => {
 
 
             {/* Action Buttons */}
-            <ActionButton>Add Travel Package</ActionButton>
+            <ActionButton >Update Travel Package</ActionButton>
         </form>
     );
 };
 
-export default TravelForm;
+export default EditForm;
